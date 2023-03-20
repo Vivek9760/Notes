@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 ConnectToDB();
 
+app.use(express.json());
 
 app.use('/api/auth',require('./routes/auth.js'));
 

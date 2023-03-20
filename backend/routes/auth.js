@@ -1,9 +1,17 @@
 const express = require('express');
-
+const User = require('../models/user');
 const router = express.Router();
 
-router.get('/',(req,res)=>{
-    res.send("Okay")
+router.post('/',(req,res)=>{
+    try{
+        const user = User(req.body);
+        user.save();
+        res.send(user);
+    }
+    catch{
+        console.log("Error");
+    }
+
 })
 
 module.exports = router;
