@@ -103,7 +103,7 @@ router.get('/getuser',fetchUser,async(req,res)=>{
     userId = req.user.id;
     const user = await User.findById(userId).select("-password");
 
-    res.send(user)
+    res.send(user);
   }
   catch(error){
     console.log(error.message);
