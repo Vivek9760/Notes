@@ -5,6 +5,7 @@ const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken');
 const jwtKey = 'vivek';
+const fetchUser = require('../middleware/fetchUser')
 
 //Create a user using POST "api/auth/createUser"  for signup.
 router.post(
@@ -93,4 +94,21 @@ body('password','Enter a valid password').exists()]
   }
 })
 
+
+// get login user details using  : /api/auth/getuser . login required
+
+router.get('/getuser',fetchUser,async(req,res)=>{
+
+  try{
+    userId = req.user.id;
+    const user = await User.findById(userId).select("-password");
+
+    res.send(user)
+  }
+  catch(error){
+    console.log(error.message);
+    res.status(500).send("Internal server error");
+  }
+})
+  
 module.exports = router;
