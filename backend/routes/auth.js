@@ -34,7 +34,7 @@ router.post(
         console.log(salt)
         const secPass = await bcrypt.hash(req.body.password, salt);
       console.log(secPass)
-      user = await User({
+      user = new User({
         name: req.body.name,
         email: req.body.email,
         password: secPass,
@@ -55,9 +55,7 @@ router.post(
   }
 );
 
-
 // "/api/auth/login"  .  no login required.
-
 router.post('/login',[
 body('email','Enter a valid email').isEmail(),
 body('password','Enter a valid password').exists()]
@@ -94,9 +92,7 @@ body('password','Enter a valid password').exists()]
   }
 })
 
-
-// get login user details using  : /api/auth/getuser . login required
-
+// get login user details using  : /api/auth/getuser . login required.
 router.get('/getuser',fetchUser,async(req,res)=>{
 
   try{
