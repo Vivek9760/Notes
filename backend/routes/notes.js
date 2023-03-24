@@ -56,7 +56,6 @@ router.put(
     }),
   ],
   fetchUser,
-
   async (req, res) => {
     try {
       const { title, description, tag } = req.body;
