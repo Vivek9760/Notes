@@ -3,7 +3,7 @@ const { validationResult, body } = require("express-validator");
 const router = express.Router();
 const fetchUser = require("../middleware/fetchUser");
 const Notes = require("../models/notes");
-const { findByIdAndUpdate } = require("../models/user");
+// const { findByIdAndUpdate } = require("../models/user");
 
 //Route 1 : get all nodes using : get "api/notes/fetchallnotes. login required"
 router.get("/fetchallnotes", fetchUser, async (req, res) => {
@@ -45,8 +45,8 @@ router.post(
   }
 );
 
-//Route 3 : update an existing node : put "/api/notes/updatenote". login required.
 
+//Route 3 : update an existing node : put "/api/notes/updatenote". login required.
 router.put(
   "/updatenote/:id",
   [
@@ -87,9 +87,7 @@ router.put(
 );
 
 
-
 //Route 4 : delete an existing node : delete "/api/notes/deletenote". login required.
-
 router.delete("/deletenote/:id", fetchUser, async (req, res) => {
   try {
     let note = await Notes.findById(req.params.id);

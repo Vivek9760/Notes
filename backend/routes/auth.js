@@ -55,6 +55,7 @@ router.post(
   }
 );
 
+
 // "/api/auth/login"  .  no login required.
 router.post(
   "/login",
@@ -98,6 +99,7 @@ router.post(
     }
   }
 );
+
 
 // get login user details using  : /api/auth/getuser . login required.
 router.get("/getuser", fetchUser, async (req, res) => {
