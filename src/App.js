@@ -8,6 +8,7 @@ import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import Login  from './components/Login';
 import Signup from './components/Signup';
+import PrivateComponents from './components/PrivateComponents';
 
 function App() {
 
@@ -30,8 +31,10 @@ function App() {
     <Alert alert={alert} message="React App" />
     <div className='container'>
     <Routes>
+      <Route element={<PrivateComponents />}>
       <Route path='/'  element={<Home showAlert={showAlert} />}/>
       <Route path='/about' element={<About />}/>
+      </Route>
       <Route path='/login'  element={<Login showAlert={showAlert} />}/>
       <Route path='/signup'  element={<Signup showAlert={showAlert}/>}/>
     </Routes>
