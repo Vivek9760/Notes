@@ -2,7 +2,6 @@ import './App.css';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import About from './components/About';
 import Navbar from './components/Navbar';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
@@ -33,7 +32,6 @@ function App() {
     <Routes>
       <Route element={<PrivateComponents />}>
       <Route path='/'  element={<Home showAlert={showAlert} />}/>
-      <Route path='/about' element={<About />}/>
       </Route>
       <Route path='/login'  element={<Login showAlert={showAlert} />}/>
       <Route path='/signup'  element={<Signup showAlert={showAlert}/>}/>
