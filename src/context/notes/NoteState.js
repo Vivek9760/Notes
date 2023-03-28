@@ -4,6 +4,7 @@ import NoteContext from "./NoteContext";
 const NoteState = (props) => {
     const [notes, setNotes] = useState([]);
     
+    //fetch all notes
     const getnotes = async() =>{
         const response = await fetch('http://localhost:5000/api/notes/fetchallnotes',{
             method:'get',
@@ -29,8 +30,7 @@ const NoteState = (props) => {
         const json = await response.json();
 
         setNotes (notes.concat(json))
-    } 
-    
+    }    
 
     // delete a note
     const  deletenote = async(id) => {
@@ -45,12 +45,11 @@ const NoteState = (props) => {
        const newNotes = notes.filter((i)=>i._id!==id)
         setNotes(newNotes)
     } 
-    
 
     // edit a note
     const  editnote = async (id, title, description, tag) => {
        
-        const response = await fetch(`http://localhost:5000/api/notes/updatenote/${id}`,{
+       await fetch(`http://localhost:5000/api/notes/updatenote/${id}`,{
             method:'put',
             headers:{
                 "Content-Type":"application/json",
@@ -58,24 +57,20 @@ const NoteState = (props) => {
             },
             body:JSON.stringify({title, description, tag})
         })
-        const json = await response.json();
-
-        let newNote = []
+         
         notes.forEach((item,index)=>{
             if(item._id === id){
                 item.title=title;
                 item.description = description;
                 item.tag = tag;
-                newNote[index]=item
-            }else{
-                newNote[index] = item
+                notes[index]=item
             }
         })
-        setNotes(newNote)
+        setNotes([...notes])
     }
 
     return(
-        <NoteContext.Provider value={{notes,addnote,deletenote,getnotes,editnote}}>
+        <NoteContext.Provider value={{notes, addnote, deletenote, getnotes, editnote}}>
             {props.children}
         </NoteContext.Provider>
     )
