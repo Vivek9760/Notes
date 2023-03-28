@@ -13,7 +13,9 @@ export default function NoteItem(props){
     <div className="card-body">
         <div className="d-flex align-items-center">
       <h5 className="card-title me-2" style={{width:"10vw"}}>{note.title}</h5>
-      <Delete titleAccess='delete' onClick={()=>{deletenote(note._id)}} sx={{cursor:'pointer'}}/>
+      <Delete titleAccess='delete' onClick={()=>{deletenote(note._id); 
+        props.showAlert("Deleted Successfully","success");
+      }} sx={{cursor:'pointer'}}/>
     <DriveFileRenameOutline onClick={()=>{updateNote(note)}}  titleAccess='edit' sx={{cursor:'pointer',}} />
         </div>
       <p className="card-text" >{note.description}</p>

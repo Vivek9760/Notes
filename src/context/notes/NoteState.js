@@ -1,8 +1,11 @@
 import { useState } from "react";
 import NoteContext from "./NoteContext";
 
+
 const NoteState = (props) => {
     const [notes, setNotes] = useState([]);
+
+   const token = localStorage.getItem('token');
     
     //fetch all notes
     const getnotes = async() =>{
@@ -10,20 +13,20 @@ const NoteState = (props) => {
             method:'get',
             headers:{
                 "Content-Type":"application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQxYzg2MDQ4NWNhNzY0N2RlMDU3OTc0In0sImlhdCI6MTY3OTU5MTc3NX0.OeuecmYS_lzXy4pCZml3aRELsy-XYsIYlG2ucQyQstU"
+                "auth-token": token
             }
         })
         const json = await response.json();
         setNotes(json)
     }
-        
+
     // Add a note
     const  addnote = async(title, description,tag) => {
         const response = await fetch('http://localhost:5000/api/notes/addnote',{
             method:'post',
             headers:{
                 "Content-Type":"application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQxYzg2MDQ4NWNhNzY0N2RlMDU3OTc0In0sImlhdCI6MTY3OTU5MTc3NX0.OeuecmYS_lzXy4pCZml3aRELsy-XYsIYlG2ucQyQstU"
+                "auth-token":token
             },
             body:JSON.stringify({title, description,tag})
         })
@@ -38,7 +41,7 @@ const NoteState = (props) => {
             method:'delete',
             headers:{
                 "Content-Type":"application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQxYzg2MDQ4NWNhNzY0N2RlMDU3OTc0In0sImlhdCI6MTY3OTU5MTc3NX0.OeuecmYS_lzXy4pCZml3aRELsy-XYsIYlG2ucQyQstU"
+                "auth-token":token
             },
         })
         await response.json();
@@ -53,7 +56,7 @@ const NoteState = (props) => {
             method:'put',
             headers:{
                 "Content-Type":"application/json",
-                "auth-token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjQxYzg2MDQ4NWNhNzY0N2RlMDU3OTc0In0sImlhdCI6MTY3OTU5MTc3NX0.OeuecmYS_lzXy4pCZml3aRELsy-XYsIYlG2ucQyQstU"
+                "auth-token":token
             },
             body:JSON.stringify({title, description, tag})
         })

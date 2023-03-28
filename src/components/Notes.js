@@ -3,12 +3,13 @@ import NoteContext from "../context/notes/NoteContext";
 import AddNote from "./AddNote";
 import NoteItem from "./NoteItem";
 
-export default function Notes() {
+export default function Notes(props) {
   const context = useContext(NoteContext);
   const { notes, getnotes, editnote } = context;
   const [note, setNote] = useState({ id:"",etitle: "", edescription: "sv", etag: "..." });
 
-  useEffect(() => {
+
+  useEffect(() => { 
     getnotes();
   }, []);
 
@@ -17,6 +18,7 @@ export default function Notes() {
     // e.preventDefault();
     // console.log(note);
     editnote(note.id, note.etitle, note.edescription, (note.etag).length===0?'...':note.etag);
+    props.showAlert("Updated Successfully","success")
   };
 
   const onChange = (e) => {
@@ -36,7 +38,7 @@ export default function Notes() {
 
   return (
     <>
-      <AddNote />
+      <AddNote showAlert={props.showAlert} />
       <button
         type="button"
         className="btn btn-primary d-none"
@@ -112,7 +114,7 @@ export default function Notes() {
             <h6>No Notes Available</h6>
         :notes.map((note) => {
           return (
-            <NoteItem key={note._id} updateNote={updateNote} note={note} />
+            <NoteItem key={note._id} updateNote={updateNote} showAlert={props.showAlert} note={note} />
           );
         })}
         
