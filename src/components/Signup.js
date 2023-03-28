@@ -11,6 +11,7 @@ const Signup = (props) => {
     };
 
     const handleSubmit = async(e)=>{
+      if(credentials.cpassword===credentials.password){
       e.preventDefault();
       let response = await fetch('http://localhost:5000/api/auth/createUser',{
           method:'post',
@@ -27,6 +28,9 @@ const Signup = (props) => {
       }
       else{
         props.showAlert("Invalid Credentials","danger");
+      }}
+      else{
+        props.showAlert("Passwords not match","danger");
       }
   }
 
