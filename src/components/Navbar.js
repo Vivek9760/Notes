@@ -42,7 +42,7 @@ export default function Navbar() {
           </ul>
           <form className="d-flex">
             {token?
-            <Link className="btn btn-primary mx-1" to={"/login"} onClick={handleLogout} role={"button"}>Logout</Link>
+            <Link className="btn btn-danger mx-1" to={"/login"} onClick={handleLogout} role={"button"}>Logout</Link>
             :
               <>
             <Link className="btn btn-primary mx-1" to={"/login"} role={"button"}>Login</Link>

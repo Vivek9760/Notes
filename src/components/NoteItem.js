@@ -9,7 +9,7 @@ export default function NoteItem(props){
     const{deletenote}= context;
     
     return(
-    <div className="card mx-2 my-2" style={{maxWidth:"25vw"}} >
+    <div className="card mx-2 my-2" style={{maxWidth:"20vw"}} >
     <div className="card-body">
         <div className="d-flex align-items-center">
       <h5 className="card-title me-2" style={{width:"10vw"}}>{note.title}</h5>
